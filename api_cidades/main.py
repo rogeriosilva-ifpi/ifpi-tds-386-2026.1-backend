@@ -1,32 +1,50 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
+# Application FastAPI 
 app = FastAPI()
 
-cidades_list = [
-  {'id': 1, 'nome': 'Teresina', 'uf': 'PI'},
-  {'id': 2, 'nome': 'Altos', 'uf': 'PI'},
-  {'id': 3, 'nome': 'Coelho Neto', 'uf': 'MA'},
-  {'id': 4, 'nome': 'Pedro II', 'uf': 'PI'},
-]
 
-# EndPoints (rota) de um API REST
+# Modelos Pydantic (Objeto) - Schemas ou ViewModels
+class Cidade(BaseModel):
+  id: int 
+  nome: str
+  uf: str
 
+
+class NovaCidade(BaseModel):
+  nome: str
+  uf: str
+
+# Banco de Dados (Fake)
+proximo_id = 1
+cidades = []
+
+
+# Endpoints (Controllers)
 @app.get('/cidades')
-def listar_cidades():
-  return cidades_list
+def cidades_list():
+  return cidades
+
+
+@app.post('/cidades', status_code=201)
+def cidades_create(nova_cidade: NovaCidade):
+  global proximo_id
+  cidade = Cidade(id=proximo_id, 
+                  nome=nova_cidade.nome, 
+                  uf=nova_cidade.uf)
+  proximo_id += 1
+
+  cidades.append(cidade)
+  return cidade
 
 
 @app.get('/cidades/{id}')
-def detalhes_cidade(id: int):
-  for cidade in cidades_list:
-    if cidade['id'] == id:
+def cidades_detail(id: int):
+  for cidade in cidades:
+    if cidade.id == id:
       return cidade
-  # e se não cidade
+  
+  return f'Não existe cidade com id --> {id}'
 
 
-@app.delete('/cidade/{id}')
-def remover_cidade(id: int):
-  for index, cidade in enumerate(cidades_list):
-    if cidade['id'] == id:
-      cidades_list.pop(index)
-      return 
