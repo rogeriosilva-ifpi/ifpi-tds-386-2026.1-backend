@@ -1,0 +1,25 @@
+# ============================================================
+# Dependências do Projeto - Academic Events API
+# ============================================================
+# Para instalar: pip install -r requirements.txt
+
+# --- Framework Web ---
+fastapi==0.115.5          # Framework web assíncrono moderno
+uvicorn[standard]==0.32.1 # Servidor ASGI para rodar o FastAPI
+
+# --- Banco de Dados ---
+sqlmodel==0.0.22          # ORM que combina SQLAlchemy + Pydantic
+alembic==1.14.0           # Sistema de migrations para banco de dados
+
+# --- Banco de dados (drivers) ---
+# SQLite já vem com Python (não precisa instalar)
+# Para PostgreSQL, descomente a linha abaixo:
+# psycopg2-binary==2.9.9
+
+# --- Configuração via .env ---
+pydantic-settings==2.6.1  # Gerenciamento de configurações com Pydantic
+
+# --- Testes ---
+pytest==8.3.4             # Framework de testes
+pytest-asyncio==0.24.0    # Suporte a testes assíncronos
+httpx==0.27.2             # Cliente HTTP para testes da API
