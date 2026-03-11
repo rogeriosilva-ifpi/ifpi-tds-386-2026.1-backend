@@ -1,0 +1,6 @@
+# FIPE
+
+GET https://brasilapi.com.br/api/fipe/veiculos/v1/carros/21?tabela_referencia=271
+
+###
+GET  https://brasilapi.com.br/api/cep/v1/64027295
