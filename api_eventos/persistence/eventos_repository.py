@@ -1,4 +1,4 @@
-from domain.modelos import Evento
+from domain.modelos_eventos import Evento
 
 
 class EventoRepository():

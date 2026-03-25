@@ -1,13 +1,12 @@
 from fastapi import APIRouter, status
-from domain.modelos import Evento
+from domain.modelos_eventos import Evento
 from persistence.eventos_repository import EventoRepository
 
 router = APIRouter()
 
 repo_eventos = EventoRepository()
 
-@router.get('', 
-         response_model=list[Evento])
+@router.get('', response_model=list[Evento])
 def list_eventos():
   return repo_eventos.all()
 
