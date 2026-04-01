@@ -1,9 +1,12 @@
-from fastapi import APIRouter, status, HTTPException
+from typing import Annotated
 
-from domain.modelos_autenticacao import UsuarioBasico
+from fastapi import APIRouter, Depends, status, HTTPException
+
+from domain.modelos_autenticacao import Usuario, UsuarioBasico
 from persistence.autenticacao_repository import AutenticacaoRepository
 from presentation.dtos.autenticacao_dtos import SigninDTO, SignupDTO
 from infrastruture import hash_provider, jwt_provider
+from presentation.utils.auth_utils import get_current_user
 
 router = APIRouter()
 repo = AutenticacaoRepository()
@@ -32,11 +35,15 @@ def signin(dados: SigninDTO):
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                         detail='Senha incorreta')
 
-  access_token = jwt_provider.generate({'sub': usuario_encontrado.id})
+  access_token = jwt_provider.generate({'sub': usuario_encontrado.email})
   return {'access_token': access_token}
 
 
 @router.get('/me')
-def me():
-  # TODO
-  ..
+def me(user: Annotated[Usuario, Depends(get_current_user)]):
+  return user
+
+
+# Type Hint (typing)
+def soma(a: int, b: int) -> int:
+  return a + b

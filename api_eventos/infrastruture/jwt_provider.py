@@ -6,5 +6,5 @@ def generate(payload: dict):
 
 
 def decode(token: str):
-  dados = jwt.decode(token, 'SEGREDO', algorithms=['HS256'])
-  return dados
+  payload = jwt.decode(token, 'SEGREDO', algorithms=['HS256'])
+  return payload
