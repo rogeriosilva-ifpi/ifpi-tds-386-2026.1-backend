@@ -2,10 +2,21 @@ from domain.modelos_autenticacao import Usuario
 
 
 class AutenticacaoRepository():
+  _instance = None
 
   def __init__(self):
     self.usuarios:list[Usuario] = []
     self.proximo_id = 1
+
+  
+  # Design Pattern Singleton
+  @classmethod
+  def getInstance(cls):
+    if not cls._instance:
+      cls._instance = AutenticacaoRepository()
+    
+    return cls._instance
+
 
   
   def create(self, email: str, senha: str, nome: str):

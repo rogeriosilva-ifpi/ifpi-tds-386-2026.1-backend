@@ -11,3 +11,7 @@ class SigninDTO(BaseModel):
   email: str
   senha: str
 
+
+class RefreshDTO(BaseModel):
+  refresh_token: str
+
