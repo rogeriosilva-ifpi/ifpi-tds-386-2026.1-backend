@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from sqlmodel import SQLModel, Field
 
 
 class UsuarioBasico(BaseModel):
@@ -7,8 +8,8 @@ class UsuarioBasico(BaseModel):
   nome: str
 
 
-class Usuario(BaseModel):
-  id: int
+class Usuario(SQLModel, table=True):
+  id: int | None = Field(default=None, primary_key=True)
   email: str
   senha: str
   nome: str

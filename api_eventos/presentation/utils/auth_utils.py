@@ -7,11 +7,13 @@ from fastapi.security import OAuth2PasswordBearer
 
 from infrastruture import jwt_provider
 from persistence.autenticacao_repository import AutenticacaoRepository
+from persistence.sqlmodel_autenticacao_repository import SQLModelAutenticacaoRepository
+from persistence.utils_db import get_engine
 
 
 oauth2_schema = OAuth2PasswordBearer(tokenUrl='/signin')
 
-repo = AutenticacaoRepository.getInstance()
+repo = SQLModelAutenticacaoRepository(get_engine())
 
 def get_current_user(token: Annotated[str, Depends(oauth2_schema)]):
   # 1. Investigar a Request para token

@@ -4,12 +4,16 @@ from fastapi import APIRouter, Depends, status, HTTPException
 
 from domain.modelos_autenticacao import Usuario, UsuarioBasico
 from persistence.autenticacao_repository import AutenticacaoRepository
+from persistence.sqlmodel_autenticacao_repository import SQLModelAutenticacaoRepository
+from persistence.utils_db import get_engine
 from presentation.dtos.autenticacao_dtos import RefreshDTO, SigninDTO, SignupDTO
 from infrastruture import hash_provider, jwt_provider
 from presentation.utils.auth_utils import get_current_user
 
 router = APIRouter()
-repo = AutenticacaoRepository.getInstance()
+# repo = AutenticacaoRepository.getInstance()
+repo = SQLModelAutenticacaoRepository(get_engine())
+
 
 @router.post('/signup',
              response_model=UsuarioBasico, 
