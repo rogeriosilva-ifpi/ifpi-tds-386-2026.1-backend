@@ -19,7 +19,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8000/auth/me HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyb2RyaWdvQGdtYWlsLmNvbSIsImV4cCI6MTc3NTYwODE2MH0.G1d9d-_4-q53lBAzfPAQpDswDnXLRK3Z8Jrt2NueOZQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyb2RyaWdvQGdtYWlsLmNvbSIsImV4cCI6MTc3NjIwOTg2OX0.GJGVdJeYYsgVKl2jNz3f7qEP0AwvDo3gyGonetsGzdU
 
 
 ###
@@ -27,5 +27,5 @@ POST http://localhost:8000/auth/refresh HTTP/1.1
 Content-Type: application/json
 
 {
-  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyb2RyaWdvQGdtYWlsLmNvbSIsImV4cCI6MTc3NTYwODkwMn0.0twYSTE-mWeSXtEVrlMB7AopON0ZA-rnHd3WeL83MqA"
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyb2RyaWdvQGdtYWlsLmNvbSIsImV4cCI6MTc3NjIxMDQyM30.lw4s_7n8JBL8kMyohCoMZo6PEvI3JFzYQ4LAxdKJOF0"
 }

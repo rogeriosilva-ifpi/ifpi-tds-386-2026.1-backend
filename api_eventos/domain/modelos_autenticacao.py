@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from sqlmodel import SQLModel, Field
+from sqlmodel import Relationship, SQLModel, Field
 
 
 class UsuarioBasico(BaseModel):
@@ -13,3 +13,5 @@ class Usuario(SQLModel, table=True):
   email: str
   senha: str
   nome: str
+
+  eventos: list['Evento'] = Relationship(back_populates='usuario')
