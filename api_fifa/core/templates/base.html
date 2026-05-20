@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}App FIFA{% endblock %} — Copa 2026</title>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-badge">⚽ Copa do Mundo 2026</div>
+        <h1>App <span>FIFA</span></h1>
+
+        <nav class="site-nav">
+            <a href="{% url 'core:index' %}"
+               class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}">
+                🏠 Início
+            </a>
+            <a href="{% url 'core:lista-selecoes' %}"
+               class="nav-link {% if request.resolver_match.url_name == 'lista-selecoes' %}active{% endif %}">
+                🏳️ Seleções
+            </a>
+            <a href="{% url 'core:lista-sedes' %}"
+               class="nav-link {% if request.resolver_match.url_name == 'lista-sedes' %}active{% endif %}">
+                🏟️ Sedes
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>App FIFA &mdash; IFPI TDS &mdash; <a href="/painel/">Painel Admin</a></p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+</html>

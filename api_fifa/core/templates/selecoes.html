@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Seleções{% endblock %}
+
+{% block content %}
+
+    <div class="page-intro">
+        <h2>Seleções Cadastradas</h2>
+        <p>Filtre por grupo ou navegue por todas as seleções da competição.</p>
+    </div>
+
+    <!-- Estatísticas rápidas -->
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-value">{{ selecoes|length }}</div>
+            <div class="stat-label">Seleções cadastradas</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">7</div>
+            <div class="stat-label">Grupos disponíveis</div>
+        </div>
+    </div>
+
+    <!-- Filtro por grupo -->
+    <div class="filter-section">
+        <div class="filter-label">Filtrar por grupo</div>
+        <div class="filter-bar">
+            <button class="filter-btn active" data-grupo="todos">Todos</button>
+            <button class="filter-btn" data-grupo="A">Grupo A</button>
+            <button class="filter-btn" data-grupo="B">Grupo B</button>
+            <button class="filter-btn" data-grupo="C">Grupo C</button>
+            <button class="filter-btn" data-grupo="D">Grupo D</button>
+            <button class="filter-btn" data-grupo="E">Grupo E</button>
+            <button class="filter-btn" data-grupo="F">Grupo F</button>
+            <button class="filter-btn" data-grupo="G">Grupo G</button>
+        </div>
+    </div>
+
+    <!-- Grid de cards -->
+    <div class="cards-grid">
+
+        {% for selecao in selecoes %}
+        <div class="selecao-card" data-grupo="{{ selecao.grupo_fase1 }}"
+             style="--group-color: var(--group-{{ selecao.grupo_fase1|lower }})">
+
+            <div class="card-header">
+                <span class="country-icon">🏳️</span>
+                <span class="group-badge">Grupo {{ selecao.grupo_fase1 }}</span>
+            </div>
+
+            <div class="card-body">
+                <div class="country-name">{{ selecao.pais }}</div>
+                <div class="coach-row">
+                    <span class="coach-icon">🧑‍💼</span>
+                    <span>{{ selecao.tecnico }}</span>
+                </div>
+            </div>
+
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <span class="empty-icon">📋</span>
+            <p>Nenhuma seleção cadastrada ainda.</p>
+            <p>Acesse o <a href="/painel/">painel administrativo</a> para adicionar.</p>
+        </div>
+        {% endfor %}
+
+        <div id="empty-state" class="empty-state" style="display:none;">
+            <span class="empty-icon">🔍</span>
+            <p>Nenhuma seleção encontrada neste grupo.</p>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'core/js/main.js' %}"></script>
+{% endblock %}

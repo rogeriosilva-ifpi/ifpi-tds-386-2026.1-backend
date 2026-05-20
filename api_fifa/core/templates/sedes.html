@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Sedes{% endblock %}
+
+{% block content %}
+
+    <div class="page-intro">
+        <h2>Sedes da Copa</h2>
+        <p>Cidades e estádios que receberão os jogos da competição.</p>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-value">{{ sedes|length }}</div>
+            <div class="stat-label">Sedes cadastradas</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">3</div>
+            <div class="stat-label">Países-sede</div>
+        </div>
+    </div>
+
+    <div class="cards-grid">
+
+        {% for sede in sedes %}
+        <div class="sede-card">
+            <span class="sede-icon">🏟️</span>
+            <div class="sede-city">{{ sede.cidade }}</div>
+            <div class="sede-stadium">
+                <span>🎙️</span>
+                <span>{{ sede.estadio }}</span>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <span class="empty-icon">🏟️</span>
+            <p>Nenhuma sede cadastrada ainda.</p>
+            <p>Acesse o <a href="/painel/">painel administrativo</a> para adicionar.</p>
+        </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
