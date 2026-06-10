@@ -17,4 +17,5 @@ EXPOSE 8000
 
 # 5. Rodar a aplicação
 # CMD [ "fastapi", "dev", "src/main.py" ]
+RUN python manage.py migrate
 CMD python manage.py runserver
