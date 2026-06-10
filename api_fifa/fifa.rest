@@ -1,34 +1,38 @@
 ###
 
-GET http://localhost:8000/api/selecoes
+@baseURL = http://localhost:8000
+# @baseURL = https://api-fifa-386.onrender.com
+
+GET {{baseURL}}/api/selecoes
 
 
 ###
-GET http://localhost:8000/api/selecoes/2
+GET {{baseURL}}/api/selecoes/2
 
 
 ###
-POST http://localhost:8000/api/selecoes/ HTTP/1.1
+POST {{baseURL}}/api/selecoes/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "tecnico": "Da Paz",
-    "pais": "El Salvador"
+    "tecnico": "Joaquim",
+    "pais": "Portugal",
+    "grupo_fase1": "G"
 }
 
 ###
-GET http://localhost:8000/api/sedes
+GET {{baseURL}}/api/sedes
 
 ###
-GET http://localhost:8000/api/sedes/1
-
-
-###
-DELETE http://localhost:8000/api/sedes/1
+GET {{baseURL}}/api/sedes/1
 
 
 ###
-POST http://localhost:8000/api/sedes HTTP/1.1
+DELETE {{baseURL}}/api/sedes/1
+
+
+###
+POST {{baseURL}}/api/sedes HTTP/1.1
 Content-Type: application/json
 
 {
@@ -38,7 +42,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:8000/api/sedes/1 HTTP/1.1
+PUT {{baseURL}}/api/sedes/1 HTTP/1.1
 Content-Type: application/json
 
 {

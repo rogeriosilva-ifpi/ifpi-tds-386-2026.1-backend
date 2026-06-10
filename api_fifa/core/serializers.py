@@ -6,7 +6,7 @@ class SelecaoSerializer(ModelSerializer):
     
     class Meta:
         model = Selecao
-        fields = ['id', 'pais', 'grupo_fase1']
+        fields = ['id', 'pais', 'tecnico', 'grupo_fase1']
 
 
 class SedeSerializer(ModelSerializer):
