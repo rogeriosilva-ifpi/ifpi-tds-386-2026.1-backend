@@ -16,6 +16,7 @@ COPY . .
 EXPOSE 8000
 
 # 5. Rodar a aplicação
+# CMD ["script_inicio.sh"]
 # CMD [ "fastapi", "dev", "src/main.py" ]
-RUN python manage.py migrate
-CMD python manage.py runserver
+RUN python manage.py migrate 
+CMD python manage.py runserver 0.0.0.0:8000
